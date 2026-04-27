@@ -1,0 +1,101 @@
+/* ── NBEN Tool — Admin Styles ────────────────────────────────────────────── */
+:root {
+  --nb-primary:  #5B3D8A;
+  --nb-accent:   #2FAB7F;
+  --nb-danger:   #dc2626;
+  --nb-border:   #dcdcde;
+  --nb-bg:       #f6f7f7;
+  --nb-white:    #ffffff;
+  --nb-radius:   6px;
+}
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.nben-builder-wrap      { max-width: 100%; }
+.nben-builder-layout    { display: grid; grid-template-columns: 220px 1fr 360px; gap: 0; margin-top: 16px; min-height: 600px; border: 1px solid var(--nb-border); border-radius: var(--nb-radius); overflow: hidden; }
+
+/* Sidebar */
+.nben-builder-sidebar   { background: #f0eff5; border-right: 1px solid var(--nb-border); padding: 16px; }
+.nben-builder-sidebar h3 { margin: 0 0 10px; font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: #666; }
+
+.nben-form-list         { list-style: none; margin: 0 0 16px; padding: 0; }
+.nben-form-list li a    { display: block; padding: 7px 10px; border-radius: var(--nb-radius); color: #333; text-decoration: none; font-size: 13px; }
+.nben-form-list li a:hover { background: var(--nb-white); }
+.nben-form-list li.is-active a { background: var(--nb-primary); color: #fff; }
+
+.nben-field-palette     { display: flex; flex-direction: column; gap: 6px; }
+.nben-palette-btn       { text-align: left; padding: 8px 10px; border: 1px solid var(--nb-border); border-radius: var(--nb-radius); background: var(--nb-white); cursor: pointer; font-size: 13px; transition: background .15s; }
+.nben-palette-btn:hover { background: var(--nb-primary); color: #fff; border-color: var(--nb-primary); }
+
+/* Main */
+.nben-builder-main      { background: var(--nb-white); padding: 20px 24px; overflow-y: auto; }
+.nben-builder-empty     { display: flex; align-items: center; justify-content: center; height: 100%; color: #888; font-style: italic; }
+
+/* Form header */
+.nben-form-header       { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--nb-border); flex-wrap: wrap; gap: 10px; }
+.nben-form-header__left { display: flex; align-items: center; gap: 10px; }
+.nben-form-header__right { display: flex; align-items: center; gap: 10px; }
+.nben-form-title-input  { font-size: 18px; font-weight: 700; border: none; border-bottom: 2px solid var(--nb-border); outline: none; padding: 2px 0; width: 280px; background: transparent; }
+.nben-form-title-input:focus { border-color: var(--nb-primary); }
+
+/* Questions list */
+.nben-questions-list    { min-height: 200px; }
+.nben-question-row      { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--nb-border); border-radius: var(--nb-radius); margin-bottom: 6px; background: var(--nb-white); cursor: default; transition: box-shadow .15s; }
+.nben-question-row:hover { box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+.nben-drag-handle       { color: #aaa; cursor: move; font-size: 18px; flex-shrink: 0; }
+.nben-question-row__info { flex: 1; min-width: 0; }
+.nben-q-type-badge      { display: inline-block; padding: 2px 7px; background: #e0d6f0; color: var(--nb-primary); border-radius: 99px; font-size: 11px; font-weight: 600; margin-bottom: 3px; text-transform: uppercase; letter-spacing: .4px; }
+.nben-q-label           { display: block; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nben-q-key             { display: block; font-size: 11px; color: #999; font-family: monospace; }
+.nben-question-row__meta { display: flex; gap: 5px; }
+.nben-question-row__actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.nben-empty-list        { color: #888; font-style: italic; padding: 20px; text-align: center; }
+
+/* Shortcode box */
+.nben-shortcode-info    { margin-top: 20px; padding: 10px 14px; background: #f6f7f7; border-radius: var(--nb-radius); font-size: 13px; color: #666; }
+.nben-shortcode-info code { background: #fff; padding: 2px 6px; border-radius: 3px; border: 1px solid var(--nb-border); }
+
+/* ── Right editor panel ───────────────────────────────────────────────────── */
+.nben-builder-editor    { background: var(--nb-bg); border-left: 1px solid var(--nb-border); display: flex; flex-direction: column; }
+.nben-editor-header     { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--nb-border); background: var(--nb-white); }
+.nben-editor-header h3  { margin: 0; font-size: 14px; }
+.nben-editor-close      { background: none; border: none; font-size: 18px; cursor: pointer; color: #666; }
+.nben-editor-body       { flex: 1; overflow-y: auto; padding: 18px; }
+.nben-editor-footer     { padding: 14px 18px; border-top: 1px solid var(--nb-border); background: var(--nb-white); display: flex; gap: 10px; align-items: center; }
+
+/* Field groups */
+.nben-field-group       { margin-bottom: 16px; }
+.nben-field-group label { display: block; font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+.nben-field-group .description { margin: 4px 0 0; color: #666; font-size: 12px; }
+
+/* Tabs */
+.nben-tabs              { display: flex; gap: 0; border-bottom: 2px solid var(--nb-border); margin-bottom: 18px; }
+.nben-tab-btn           { background: none; border: none; padding: 8px 14px; font-size: 13px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; color: #666; font-weight: 500; }
+.nben-tab-btn:hover     { color: var(--nb-primary); }
+.nben-tab-btn.is-active { color: var(--nb-primary); border-color: var(--nb-primary); }
+.nben-tab-panel         { display: none; }
+.nben-tab-panel.is-active { display: block; }
+
+/* Choices editor */
+.nben-choices-editor    { margin-bottom: 12px; }
+.nben-choice-row        { display: flex; align-items: center; gap: 6px; padding: 8px; background: var(--nb-white); border: 1px solid var(--nb-border); border-radius: var(--nb-radius); margin-bottom: 6px; flex-wrap: wrap; }
+
+/* Logic editor */
+.nben-logic-editor      { margin-bottom: 12px; }
+.nben-logic-row         { display: flex; align-items: center; gap: 6px; padding: 10px; background: var(--nb-white); border: 1px solid var(--nb-border); border-radius: var(--nb-radius); margin-bottom: 8px; flex-wrap: wrap; font-size: 13px; }
+
+/* Badges */
+.nben-badge             { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+.nben-badge--draft      { background: #fef3c7; color: #92400e; }
+.nben-badge--logic      { background: #dbeafe; color: #1e40af; }
+.nben-badge--popup      { background: #d1fae5; color: #065f46; }
+.nben-form-status-badge { padding: 2px 10px; border-radius: 99px; font-size: 12px; font-weight: 600; }
+.nben-form-status-badge.active { background: #d1fae5; color: #065f46; }
+.nben-form-status-badge.draft  { background: #fef3c7; color: #92400e; }
+
+/* Danger button */
+.nben-btn-danger        { color: var(--nb-danger) !important; border-color: var(--nb-danger) !important; }
+.nben-btn-danger:hover  { background: var(--nb-danger) !important; color: #fff !important; }
+
+/* Save status */
+.nben-save-status       { font-size: 13px; font-weight: 600; }

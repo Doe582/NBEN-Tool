@@ -1,0 +1,8 @@
+title,description_en,description_fr,location,province,year,total_size,size_unit,cost_total,cost_per_unit,currency_year,source_name,source_url,nbs_type,hazard,infra_type
+Sackville Rooftop Garden,A green roof installed on municipal building to manage stormwater,Un toit vert installé sur un bâtiment municipal,Sackville,NB,2022,0.05,ha,45000,900000,2022,CBC News,https://cbc.ca/example,Green Roofs,Flooding|Heat Island Effect,NbS
+Memramcook Rain Garden,Residential rain garden capturing roof runoff,Jardin pluvial résidentiel,Memramcook,NB,2021,0.002,ha,3500,1750000,2021,CLIMAtlantic,https://climatlantic.ca,Rain Gardens,Flooding,NbS
+Fredericton Bioswale,Roadside bioswale along arterial road,Bioswale en bordure de route,Fredericton,NB,2023,220,m,88000,400,2023,City of Fredericton,,Bioswales,Flooding|Erosion,NbS
+Murray Beach Dune Restoration,Dune restoration with marram grass,Restauration des dunes avec ammophile,Murray Beach,NB,2020,1.5,ha,67500,45000,2020,Parks Canada,,Beach and Dune Restoration,Erosion|Habitat Loss,NbS
+Petitcodiac Riparian Buffer,Native plantings along river corridor,Plantations indigènes le long du couloir,Moncton,NB,2022,800,m,48000,60,2022,NBEN,,Riparian Buffers,Erosion|Flooding,NbS
+Concrete Storm Drain Replacement,Standard concrete channel upgrade,Remplacement béton,Fredericton,NB,2021,300,m,120000,400,2021,City of Fredericton,,,,Grey Infrastructure
+Rock Revetment Shoreline,Rock armour shoreline protection,Protection de rivage en enrochement,Shediac,NB,2023,150,m,225000,1500,2023,ECCC,,,,Grey Infrastructure
