@@ -1,0 +1,17 @@
+# os and ide
+.DS_Store
+.vscode/
+.idea/
+
+# composer
+vendor/
+composer.lock
+
+# node / npm
+node_modules/
+
+# misc.
+.build/
+.env
+*.log
+*.txt
