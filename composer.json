@@ -1,5 +1,38 @@
 {
+    "name": "perceptionsstudio/sophiateachers-child-theme",
+    "description": "It's a child theme for sophia teachers for there wordpress website.",
+    "keywords": ["sift", "ps", "theme", "child"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adeel Akhter",
+            "email": "adeel@perceptionsstudio.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
     "require-dev": {
-        "laravel/pint": "^1.29"
+        "laravel/pint": "1.20.0",
+        "phpstan/phpstan": "^2.1",
+        "php-stubs/wp-cli-stubs": "^2.11",
+        "php-stubs/acf-pro-stubs": "^6.3",
+        "php-stubs/wordpress-stubs": "^6.8",
+        "php-stubs/woocommerce-stubs": "^9.8"
+    },
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "lint": "pint -v",
+        "test:lint": "pint -v --test",
+        "test:types": "phpstan",
+        "test": [
+            "@test:lint",
+            "@test:types"
+        ]
     }
 }
