@@ -1,10 +1,11 @@
 <?php
+
 namespace NBEN;
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-class Installer {
-
+class Installer
+{
     /**
      * Tables we create:
      *  nben_forms        – form definitions (one row per form)
@@ -13,7 +14,8 @@ class Installer {
      *  nben_logic        – conditional-show rules
      *  nben_popups       – popup/tooltip content per question
      */
-    public static function activate(): void {
+    public static function activate(): void
+    {
         global $wpdb;
         $charset = $wpdb->get_charset_collate();
 
@@ -95,13 +97,13 @@ class Installer {
             KEY question_id (question_id)
         ) $charset;";
 
-        require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-        foreach ( $sql as $q ) {
-            dbDelta( $q );
+        require_once ABSPATH.'wp-admin/includes/upgrade.php';
+        foreach ($sql as $q) {
+            dbDelta($q);
         }
 
         // Store DB version for future migrations
-        update_option( 'nben_db_version', NBEN_VERSION );
+        update_option('nben_db_version', NBEN_VERSION);
 
         // Seed default form if none exist
         self::maybe_seed_default_form();
@@ -110,24 +112,28 @@ class Installer {
         flush_rewrite_rules();
     }
 
-    public static function deactivate(): void {
+    public static function deactivate(): void
+    {
         flush_rewrite_rules();
     }
 
     /**
      * Insert a starter form so the admin sees something on first run.
      */
-    private static function maybe_seed_default_form(): void {
+    private static function maybe_seed_default_form(): void
+    {
         global $wpdb;
-        $table = $wpdb->prefix . 'nben_forms';
-        $count = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table" );
-        if ( $count > 0 ) return;
+        $table = $wpdb->prefix.'nben_forms';
+        $count = (int) $wpdb->get_var("SELECT COUNT(*) FROM $table");
+        if ($count > 0) {
+            return;
+        }
 
-        $wpdb->insert( $table, [
-            'title'       => 'NbS Cost Estimation Tool',
-            'slug'        => 'nbs-cost-estimation',
+        $wpdb->insert($table, [
+            'title' => 'NbS Cost Estimation Tool',
+            'slug' => 'nbs-cost-estimation',
             'description' => 'Guides users to identify and estimate costs of Nature-based Solutions.',
-            'status'      => 1,
-        ] );
+            'status' => 1,
+        ]);
     }
 }
