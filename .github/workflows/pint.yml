@@ -1,0 +1,72 @@
+name: Pull Request Checks - Pint
+
+on:
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  pint:
+    runs-on: ${{ matrix.os }}
+
+    permissions:
+      contents: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.1]
+        dependency-version: [prefer-stable]
+
+    name: Code Formatting (${{ matrix.os }} - ${{ matrix.php }} - ${{ matrix.dependency-version }})
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+
+    - name: Detect Changed PHP Files
+      id: ps-changed-files
+      uses: tj-actions/changed-files@v46
+      with:
+        files: '**.php'
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: curl, zip, json, mbstring, tokenizer, libxml, dom
+        tools: composer, wp, cs2pr
+        coverage: none
+
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      shell: bash
+      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+    - name: Cache Dependencies
+      uses: actions/cache@v4
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: composer-cache-${{ runner.os }}-php-${{ matrix.php }}-${{ matrix.dependency-version }}-${{ hashFiles('composer.lock') }}
+        restore-keys: |
+          composer-cache-${{ runner.os }}-php-${{ matrix.php }}-${{ matrix.dependency-version }}-
+          composer-cache-${{ runner.os }}-php-${{ matrix.php }}-
+          composer-cache-${{ runner.os }}-
+
+    - name: Install Composer Dependencies
+      run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+
+    - name: Run Pint
+      if: steps.ps-changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "${{ steps.changed-files.outputs.all_changed_files }}" > changed-files.txt
+        mapfile -t files < changed-files.txt
+        ./vendor/bin/pint "${files[@]}"
+
+    - name: Commit Linted Files
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "style: auto-format php code using pint"

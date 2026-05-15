@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: NBEN Cost Estimation Tool
  * Plugin URI:  https://nben.ca
@@ -11,28 +12,30 @@
  * Requires PHP: 8.0
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-define( 'NBEN_VERSION',     '1.0.0' );
-define( 'NBEN_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
-define( 'NBEN_PLUGIN_URL',  plugin_dir_url( __FILE__ ) );
-define( 'NBEN_PLUGIN_FILE', __FILE__ );
+define('NBEN_VERSION',     '1.0.0');
+define('NBEN_PLUGIN_DIR',  plugin_dir_path(__FILE__));
+define('NBEN_PLUGIN_URL',  plugin_dir_url(__FILE__));
+define('NBEN_PLUGIN_FILE', __FILE__);
 
 // ─── Autoload ─────────────────────────────────────────────────────────────────
-spl_autoload_register( function ( $class ) {
+spl_autoload_register(function ($class) {
     $prefix = 'NBEN\\';
-    if ( strpos( $class, $prefix ) !== 0 ) return;
-    $relative = str_replace( '\\', DIRECTORY_SEPARATOR, substr( $class, strlen( $prefix ) ) );
+    if (strpos($class, $prefix) !== 0) return;
+    $relative = str_replace('\\', DIRECTORY_SEPARATOR, substr($class, strlen($prefix)));
     $file = NBEN_PLUGIN_DIR . 'includes/' . $relative . '.php';
-    if ( file_exists( $file ) ) require $file;
-} );
+    if (file_exists($file)) require $file;
+});
 
 // ─── Boot ─────────────────────────────────────────────────────────────────────
-add_action( 'plugins_loaded', function () {
-    load_plugin_textdomain( 'nben-tool', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+add_action('plugins_loaded', function () {
+    load_plugin_textdomain('nben-tool', false, dirname(plugin_basename(__FILE__)) . '/languages');
     NBEN\Plugin::instance()->init();
-} );
+});
 
-register_activation_hook( __FILE__,   [ 'NBEN\Installer', 'activate' ] );
-register_deactivation_hook( __FILE__, [ 'NBEN\Installer', 'deactivate' ] );
+register_activation_hook(__FILE__,   ['NBEN\Installer', 'activate']);
+register_deactivation_hook(__FILE__, ['NBEN\Installer', 'deactivate']);
+
+echo "    te4st";
