@@ -38,4 +38,4 @@ add_action('plugins_loaded', function () {
 register_activation_hook(__FILE__,   ['NBEN\Installer', 'activate']);
 register_deactivation_hook(__FILE__, ['NBEN\Installer', 'deactivate']);
 
-echo "    te4st";
+echo "    te4st.   ";
