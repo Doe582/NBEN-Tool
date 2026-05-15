@@ -1,40 +1,44 @@
 <?php
+
 namespace NBEN;
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 /**
  * Core plugin singleton.
  */
-class Plugin {
-
+class Plugin
+{
     private static ?self $instance = null;
 
-    public static function instance(): self {
-        if ( null === self::$instance ) {
-            self::$instance = new self();
+    public static function instance(): self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self;
         }
+
         return self::$instance;
     }
 
     private function __construct() {}
 
-    public function init(): void {
+    public function init(): void
+    {
         // Register CPT + Taxonomies
-        ( new CPT\Projects() )->register();
+        (new CPT\Projects)->register();
 
         // Admin
-        if ( is_admin() ) {
-            ( new Admin\FormBuilder() )->register();
-            ( new Admin\ProjectMeta() )->register();
-            ( new Admin\Settings() )->register();
+        if (is_admin()) {
+            (new Admin\FormBuilder)->register();
+            (new Admin\ProjectMeta)->register();
+            (new Admin\Settings)->register();
         }
 
         // Frontend shortcode + assets
-        ( new Frontend\Shortcode() )->register();
-        ( new Frontend\Assets() )->register();
+        (new Frontend\Shortcode)->register();
+        (new Frontend\Assets)->register();
 
         // AJAX (both logged-in and guest)
-        ( new Ajax\Handler() )->register();
+        (new Ajax\Handler)->register();
     }
 }
